@@ -5,7 +5,7 @@ const gastos_rutas = require('../routes/gastos_rutas.js')
 const           db = require ('../db/db.js')
 
 const app  = express()
-const port = 3030
+const port = process.env.port || 3030
 
 app.use(cors())
 app.use(express.json())
