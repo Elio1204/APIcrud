@@ -16,7 +16,7 @@ app.get("/", (req,res)=>{
 })
 
 app.use("/gastos", gastos_rutas)
-
+       
 
 const baseConect = async () =>{
     try{
@@ -30,5 +30,5 @@ const baseConect = async () =>{
 app.listen(port,()=>{
     baseConect()
     console.log("Server runnign in port: ", port);
-})
-      
+}) 
+  

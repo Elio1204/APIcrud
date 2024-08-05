@@ -5,6 +5,7 @@ const {todos_gastos, un_gasto,actualiza_gasto,crea_gasto,elimina_gasto} = requir
 
 
 routes.get('/',todos_gastos)
+// routes.get('/',sumatoria)
 routes.get('/:id',un_gasto)
 routes.post('/',crea_gasto)
 routes.put('/:id',actualiza_gasto)

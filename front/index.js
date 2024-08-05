@@ -16,10 +16,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
             console.log(datos);
 
 
+            let resultado = 0
+
             datos.forEach(dato => {
                 let tr = document.createElement('tr');
     
-                let td_id = document.createElement('td');
+                let td_id = document.createElement('td');   
                 td_id.textContent = dato.id_gasto;
                 tr.appendChild(td_id);
             
@@ -61,8 +63,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 
                 body_tabla.appendChild(tr);
 
+                // suma de los montos
+                resultado += dato.monto
 
             });
+
+            // const caja = document.querySelector('.money-box');
+            const monto = document.querySelector('.money-amount');
+
+            monto.textContent = `$${resultado.toFixed(2)}`;        
+            
+
         } catch (error) {
             console.error('Error al ahcer el fetch',error);
         }
@@ -86,7 +97,35 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     }
 
+        // sumatoria de gastos
+
+        const totalGastos = async()=>{
+            try {
+                const URL = `http://localhost:3030/gastos/`
+                const res = await fetch(URL)
+                const total = await res.json()
+                console.log(total);
+            } catch (error) {
+                console.error(`Error al traer para la suma ${error}`);
+            }
+        }
+
     // FORM QUE ENVIA A LA BASE DE DATOS
+
+    // const suma = async ()=>{
+    //     try {
+    //         const URL = 'http://localhost:3030/gastos/'
+    //         const res = await fetch(URL)
+    //         console.log(`Response de la sumatoria`,res);
+
+    //         res.forEach((dato) => 
+                
+    //             console.log('hoal',dato));
+
+    //     } catch (error) {
+            
+    //     }
+    // }
         
     const form = document.getElementById("agrega_gasto_formulario")
 
@@ -114,5 +153,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             console.log('Error enviando formulario', error);
         }
     })
+    // suma()
+    totalGastos()
     fetchSpends()
 })

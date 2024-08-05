@@ -1,16 +1,25 @@
-// const { Sequelize } = require("sequelize");
+// const { Sequelize } = require("sequelize"); los controladores tambien son middleware
 const dbModeled = require ("../models/model.js");
 // const modelDb = require("../models/model.js");
 
 const todos_gastos = async (req,res) =>{
     try {
         const allSpends = await dbModeled.findAll()
-        const response =  res.json(allSpends)
-        console.log('Respuesta',response);
+        res.json(allSpends)
+        // console.log('Respuesta',response);
     } catch (error) {
         res.json({message:error.message})
     }
 }
+
+// const sumatoria = async (req,res)=>{
+//     try {
+//         const suma = await dbModeled.sum('monto') 
+//         res.json(suma)
+//     } catch (error) {
+//         res.json({message:error.message})
+//     }
+// }
 
 const crea_gasto = async (req,res)=>{
     try {
